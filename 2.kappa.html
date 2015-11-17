@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Twitch Emote Chrome Extend</title>	
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>	
+</head>
+<body>
+<h1>不可質疑你的Kappa</h1>
+<form action="http://twitchemotes.com/api_cache/v2/global.json">
+    <input type="submit" value="Json Source">
+</form>
+<form action="http://jsonformatter.curiousconcept.com/">
+    <input type="submit" value="Json Formatter">
+</form>
+
+
+<table>
+	<tr>
+		<th>name</th>
+		<th>image_id</th>
+		<th>description</th>
+	</tr>
+    <tbody id="country">
+    </tbody>
+</table>
+<script>
+function loadInfo() {
+    $.getJSON('http://twitchemotes.com/api_cache/v2/global.json', function (data){
+        $.each(data.emotes, function(i, item) {
+            $("#country").append(
+                // <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px">
+                    "<tr><td>" + "<img src=\"http://static-cdn.jtvnw.net/emoticons/v1/"+item.image_id+"/1.0\">" +
+                    "</td><td>" + i +
+                    "</td><td>" + item.image_id + 
+                    "</td><td>" + item.description + 
+                    "</td></tr>");
+        });
+    });
+}
+
+$( document ).ready(function() {
+    loadInfo();
+});
+</script>
+</body>
+</html>
